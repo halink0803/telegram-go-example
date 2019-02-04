@@ -76,7 +76,7 @@ func main() {
 		// get chat id from get_chat.go
 		chatID := int64(602400752)
 
-		inputMsgTxt := tdlib.NewInputMessageText(tdlib.NewFormattedText("/start", nil), true, true)
+		inputMsgTxt := tdlib.NewInputMessageText(tdlib.NewFormattedText("something to send", nil), true, true)
 		client.SendMessage(chatID, 0, false, true, nil, inputMsgTxt)
 
 		time.Sleep(5 * time.Second)
