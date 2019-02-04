@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -16,8 +18,8 @@ func main() {
 
 	// Create new instance of client
 	client := tdlib.NewClient(tdlib.Config{
-		APIID:               "API_ID",
-		APIHash:             "API_HASH",
+		APIID:               "627363",
+		APIHash:             "3c2d247af7147492c02439c369e31860",
 		SystemLanguageCode:  "en",
 		DeviceModel:         "Server",
 		SystemVersion:       "1.0.0",
@@ -74,11 +76,26 @@ func main() {
 
 	go func() {
 		// get chat id from get_chat.go
-		chatID := int64(602400752)
+		chatID := int64(-1001318327825)
 
 		inputMsgTxt := tdlib.NewInputMessageText(tdlib.NewFormattedText("something to send", nil), true, true)
-		client.SendMessage(chatID, 0, false, true, nil, inputMsgTxt)
+		message, err := client.SendMessage(chatID, 0, false, true, nil, inputMsgTxt)
+
+		if err != nil {
+			log.Print(err.Error())
+		} else {
+			messageJSON, _ := json.Marshal(message)
+			log.Printf("%s", messageJSON)
+		}
 
 		time.Sleep(5 * time.Second)
 	}()
+
+	// rawUpdates gets all updates comming from tdlib
+	rawUpdates := client.GetRawUpdatesChannel(100)
+	for update := range rawUpdates {
+		// Show all updates
+		fmt.Println(update.Data)
+		fmt.Print("\n\n")
+	}
 }
