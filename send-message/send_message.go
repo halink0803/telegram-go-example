@@ -16,8 +16,8 @@ func main() {
 
 	// Create new instance of client
 	client := tdlib.NewClient(tdlib.Config{
-		APIID:               "627363",
-		APIHash:             "3c2d247af7147492c02439c369e31860",
+		APIID:               "API_ID",
+		APIHash:             "API_HASH",
 		SystemLanguageCode:  "en",
 		DeviceModel:         "Server",
 		SystemVersion:       "1.0.0",

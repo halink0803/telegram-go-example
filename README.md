@@ -21,7 +21,7 @@ cmake --build .
 make install
 ```
 
-# Get app_id, api_hash
+# Get api_id, api_hash
 
 - Log in to your Telegram core: https://my.telegram.org.
 - Go to ‘API development tools’ and fill out the form.
