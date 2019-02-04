@@ -72,10 +72,9 @@ func main() {
 		}
 	}
 
-	// Send "/start" text every 5 seconds to Forsquare bot chat
 	go func() {
-		// Should get chatID somehow, check out "getChats" example
-		chatID := int64(602400752) // Foursquare bot chat id
+		// get chat id from get_chat.go
+		chatID := int64(602400752)
 
 		inputMsgTxt := tdlib.NewInputMessageText(tdlib.NewFormattedText("/start", nil), true, true)
 		client.SendMessage(chatID, 0, false, true, nil, inputMsgTxt)
